@@ -13,51 +13,49 @@ df = Daru::DataFrame.new(
 )
 
 p df
-
+name_player = []
 puts 'player 1: Enter your name'
-name_player1 = gets.chomp
+name_player[0] = gets.chomp
 puts 'player 2: Enter your name'
-name_player2 = gets.chomp
+name_player[1] = gets.chomp
 puts '********who is going first?*******'
-puts "Enter 1 for #{name_player1}"
-puts "Enter 2 for #{name_player2}"
-puts 'Enter 3 for random'
-count = 0
+puts "Enter 1 for #{name_player[0]}"
+puts "Enter 2 for #{name_player[1]}"
 choice = 0
 loop do
   choice = gets.chomp.to_i
   if choice == 1
-    puts "#{name_player1} Please enter your move"
-    count = 1
+    puts " ********Okay!!#{name_player[0]} will Start*********"
     break
   elsif choice == 2
-    puts "#{name_player2} Please enter your move"
-    count = 2
+    puts "*********Okay!!#{name_player[1]} will start***********"
     break
-  elsif choice == 3
-    choice = [1, 2].sample
-    puts " #{name_player1} Please enter your choice" if choice == 1
-    puts " #{name_player2} Please enter your choice" if choice == 2
-    count = choice
-    break
-  else puts 'Please choose either 1, 2 or 3'
+  else puts 'Please choose either 1, 2'
   end
 end
+count = 0
+game_on = true
+t = choice - 1
 
-move = gets.chomp
-p df
-count = choice
+while game_on
 
-4.times do
-  if choice == 1
-    puts "#{name_player2} Please enter your move"
-    move = gets.chomp
-    choice = 2
+  puts "#{name_player[t]} Please enter your move"
+  move = gets.chomp.to_i
+
+  if move >= 1 && move <= 9
+    p df
+    puts "#{name_player[t]} your move is displayed on the board"
+    count += 1
+    t = (t + 3) % 2
+    p count
   else
-    puts "#{name_player1} Please enter your move"
-    move = gets.chomp
-    choice = 1
+    puts "invalid move, #{name_player[t]} please choose again"
   end
-end
 
-puts ''
+  next unless count == 4
+
+  p df
+  game_on = false
+  puts 'draw game, there is no winner, try again'
+  break
+end

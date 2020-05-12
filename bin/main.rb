@@ -46,8 +46,8 @@ while game_on
     p df
     puts "#{name_player[t]} your move is displayed on the board"
     count += 1
-    if move==8 
-      game_on=false 
+    if move == 8
+      game_on = false
       puts "*******Congratulations #{name_player[t]} You win"
     end
     t = (t + 3) % 2

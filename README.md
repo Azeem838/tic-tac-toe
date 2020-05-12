@@ -1,73 +1,43 @@
-# Project Name
+Milestone 2 Ruby
 
-> One paragraph statement about the project.
+> This Ruby code is the second milestone on the ruby curriculum
 
-![screenshot](./app_screenshot.png)
+Additional description:
 
-Additional description about the project and its features.
-
-## Built With
-
-- Major languages,
-- frameworks,
-- technologies used
-
-## Live Demo
-
-[Live Demo Link](https://livedemo.com)
+Here we have all the user interface already done, almost just some few part which will be added when the logic is added.
 
 
-## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
+- Ruby
 
 To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
+### You need to Have Ruby installed
 
-### Setup
+### clone the repository using the link (https://github.com/Azeem838/tic-tac-toe)
 
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
+### Install the germ added to our germfile using this command: gem install daru -v 0.1.5
 
 
 ## Authors
 
-👤 **Author1**
+👤 **Njgouh Abdoulaye Razak**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github: [@AbdoulayeRazak](https://github.com/Abdoulaye-Thespy)
 
 👤 **Author2**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github: [@Azeem838](https://github.com/Azeem838)
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](issues/).
+Feel free to check the [issues page](https://github.com/Azeem838/bubble-sort/issues).
 
 ## Show your support
 
 Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
 
 ## 📝 License
 

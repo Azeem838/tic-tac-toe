@@ -6,15 +6,25 @@ puts 'Lets play tic-tac-toe'
 puts '******Game Board******'
 
 df = Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: [3, 6, 9] })
-check =[0,0,0,0,0,0,0,0,0,0]
+check = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 p df
 player = []
-puts 'Player 1: Please Enter your name'
-player[0] = Players.new(gets.chomp, 1)
+player1_name = ''
+player2_name = ''
 
-puts 'Player 2: Please Enter your name'
-player[1] = Players.new(gets.chomp, 2)
+until player1_name.length >= 3
+  puts 'Player 1: Please Enter your name (3 characters or more)'
+  player1_name = gets.chomp
+end
+
+until player2_name.length >= 3
+  puts 'Player 2: Please Enter your name (3 characters or more)'
+  player2_name = gets.chomp
+end
+
+player[0] = Players.new(player1_name, 1)
+player[1] = Players.new(player2_name, 2)
 
 name_player = [player[0].name, player[1].name]
 
@@ -39,29 +49,24 @@ game_on = new_game.start
 count = 0
 t = choice - 1
 
-diag1 = []
-diag2 = []
-
 while game_on
   p df
   puts "#{name_player[t]} Please enter your move"
   move = gets.chomp.to_i
-   outcome = WinLose.new(df, t, move,check)
+  outcome = WinLose.new(df, t, move, check)
   if move >= 1 && move <= 9 && outcome.check
     new_game.change(df, move, t)
-    p df
     puts "#{name_player[t]} your move is displayed on the board"
     count += 1
 
-
-    p outcome
-    p outcome.win
     if outcome.win == true
       game_on = false
       puts "*******Congratulations #{name_player[t]} You win"
+      p df
     elsif outcome.draw(count) == true
       game_on = false
       puts 'draw game, there is no winner, try again'
+      p df
     end
     t = (t + 3) % 2
 

@@ -5,10 +5,10 @@ require_relative 'game_logic.rb'
 puts 'Lets play tic-tac-toe'
 puts '******Game Board******'
 
-df = Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: [3, 6, 9] })
+game_board = Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: [3, 6, 9] })
 check = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-p df
+p game_board
 player = []
 player1_name = ''
 player2_name = ''
@@ -47,30 +47,33 @@ new_game = Game.new
 game_on = new_game.start
 
 count = 0
-t = choice - 1
+player_num = choice - 1
 
 while game_on
-  p df
-  puts "#{name_player[t]} Please enter your move"
+  p game_board
+  puts "#{name_player[player_num]} Please enter your move"
   move = gets.chomp.to_i
-  outcome = WinLose.new(df, t, move, check)
+  outcome = WinLose.new(game_board, player_num, move, check)
   if move >= 1 && move <= 9 && outcome.check
-    new_game.change(df, move, t)
-    puts "#{name_player[t]} your move is displayed on the board"
+    new_game.change(game_board, move, player_num)
+    puts "#{name_player[player_num]} your move is displayed on the board"
     count += 1
+
+    outcome.board_checks
+    outcome.diagonals
 
     if outcome.win == true
       game_on = false
-      puts "*******Congratulations #{name_player[t]} You win"
-      p df
+      puts "*******Congratulations #{name_player[player_num]} You win"
+      p game_board
     elsif outcome.draw(count) == true
       game_on = false
       puts 'draw game, there is no winner, try again'
-      p df
+      p game_board
     end
-    t = (t + 3) % 2
+    player_num = (player_num + 3) % 2
 
   else
-    puts "invalid move, #{name_player[t]} please choose again"
+    puts "invalid move, #{name_player[player_num]} please choose again"
   end
 end

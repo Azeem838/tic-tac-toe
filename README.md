@@ -16,7 +16,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### clone the repository using the link (https://github.com/Azeem838/tic-tac-toe)
 
-### Install the germ added to our germfile using this command: gem install daru -v 0.1.5
+### Install the germ added to our germfile using this command: gem install daru
 
 
 ## Authors

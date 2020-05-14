@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 require 'daru'
-require_relative 'game_logic.rb'
+require_relative '../lib/game_logic.rb'
 
 puts 'Lets play tic-tac-toe'
 puts '******Game Board******'

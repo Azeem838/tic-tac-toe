@@ -88,7 +88,7 @@ while play
     game_on = new_game.start
     game_board = Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: [3, 6, 9] })
     check = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  elsif countinue == 0
+  elsif countinue.zero?
     play = false
 
   else puts 'enter either 0 or 1'

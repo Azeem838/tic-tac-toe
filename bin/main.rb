@@ -48,32 +48,49 @@ game_on = new_game.start
 
 count = 0
 player_num = choice - 1
+play = true
 
-while game_on
-  p game_board
-  puts "#{name_player[player_num]} Please enter a number between 1 and 9"
-  move = gets.chomp.to_i
-  outcome = WinLose.new(game_board, player_num, move, check)
-  if move >= 1 && move <= 9 && outcome.check
-    new_game.change(game_board, move, player_num)
-    puts "#{name_player[player_num]} your move is displayed on the board with #{new_game.sign(player_num)}"
-    count += 1
+while play
 
-    outcome.board_checks
-    outcome.diagonals
+  while game_on
+    p game_board
+    puts "#{name_player[player_num]} Please enter a number between 1 and 9"
+    move = gets.chomp.to_i
+    outcome = WinLose.new(game_board, player_num, move, check)
+    if move >= 1 && move <= 9 && outcome.check
+      new_game.change(game_board, move, player_num)
+      puts "#{name_player[player_num]} your move is displayed on the board with #{new_game.sign(player_num)}"
+      count += 1
 
-    if outcome.win == true
-      game_on = false
-      puts "*******Congratulations #{name_player[player_num]} You win"
-      p game_board
-    elsif outcome.draw(count) == true
-      game_on = false
-      puts 'draw game, there is no winner, try again'
-      p game_board
+      outcome.board_checks
+      outcome.diagonals
+
+      if outcome.win == true
+        game_on = false
+        puts "*******Congratulations #{name_player[player_num]} You win"
+        p game_board
+      elsif outcome.draw(count) == true
+        game_on = false
+        puts 'draw game, there is no winner, try again'
+        p game_board
+      end
+      player_num = (player_num + 3) % 2
+
+    else
+      puts "invalid move, #{name_player[player_num]} please choose again"
     end
-    player_num = (player_num + 3) % 2
+  end
 
-  else
-    puts "invalid move, #{name_player[player_num]} please choose again"
+  puts 'Enter 1 If you want to start a new game?'
+  puts 'Enter 0 to Quit'
+  countinue = gets.chomp.to_i
+  if countinue == 1
+    game_on = new_game.start
+    game_board = Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: [3, 6, 9] })
+    check = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  elsif countinue == 0
+    play = false
+
+  else puts 'enter either 0 or 1'
   end
 end

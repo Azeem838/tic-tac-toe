@@ -51,12 +51,12 @@ player_num = choice - 1
 
 while game_on
   p game_board
-  puts "#{name_player[player_num]} Please enter your move"
+  puts "#{name_player[player_num]} Please enter a number between 1 and 9"
   move = gets.chomp.to_i
   outcome = WinLose.new(game_board, player_num, move, check)
   if move >= 1 && move <= 9 && outcome.check
     new_game.change(game_board, move, player_num)
-    puts "#{name_player[player_num]} your move is displayed on the board"
+    puts "#{name_player[player_num]} your move is displayed on the board with #{new_game.sign(player_num)}"
     count += 1
 
     outcome.board_checks

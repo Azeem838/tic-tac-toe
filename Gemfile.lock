@@ -1,0 +1,15 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    backports (3.17.1)
+    daru (0.1.5)
+      backports
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  daru
+
+BUNDLED WITH
+   1.17.2

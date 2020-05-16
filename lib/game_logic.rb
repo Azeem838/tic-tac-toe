@@ -17,6 +17,14 @@ class WinLose < Game
     @col_zero = -> {}
     @col_one = -> {}
     @col_two = -> {}
+    @diag1 = -> { (0..2).collect { |i| game_board[i][i] } }
+    @diag2 = -> { (0..2).collect { |i| game_board[i][-i - 1] } }
+    @row_zero = -> { @game_board.row[0].all? { |row| row[0] == sign(@player_num) } }
+    @row_one = -> { @game_board.row[1].all? { |row| row[0] == sign(@player_num) } }
+    @row_two = -> { @game_board.row[2].all? { |row| row[0] == sign(@player_num) } }
+    @col_zero = -> { @game_board[0].all? { |col| col[0] == sign(@player_num) } }
+    @col_one = -> { @game_board[1].all? { |col| col[0] == sign(@player_num) } }
+    @col_two = -> { @game_board[2].all? { |col| col[0] == sign(@player_num) } }
   end
 
   def board_checks

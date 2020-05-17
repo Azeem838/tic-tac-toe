@@ -23,7 +23,6 @@ class Game
   end
 
   def start
-    true
     @game_board = Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: [3, 6, 9] })
   end
 end

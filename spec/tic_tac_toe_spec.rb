@@ -3,9 +3,9 @@ require_relative '../lib/game_logic.rb'
 require_relative '../lib/player_method.rb'
 require_relative '../lib/game_board_replace.rb'
 
-describe '#WinLose' do  
+describe '#WinLose' do
   let(:try) { WinLose.new(game_board, 1, move, check) }
-  before(:each) do 
+  before(:each) do
     try.diagonals
     try.board_checks
   end
@@ -22,7 +22,6 @@ describe '#WinLose' do
     let(:game_board) { Daru::DataFrame.new({ a: ['O', 'O', 7], b: [2, 5, 8], c: [3, 6, 9] }) }
     let(:move) { 1 }
     let(:check) { [0, 1, 0, 0, 1, 0, 0, 0, 0, 0] }
-    diag1 = -> { (0..2).collect { |i| game_board[i][i] } }
     it 'enters the move and return true' do
       expect(try.check).to eq(false)
     end
@@ -30,7 +29,7 @@ describe '#WinLose' do
 
   context '#win is working in diagonal position' do
     let(:game_board) { Daru::DataFrame.new({ a: ['O', 4, 7], b: [2, 'O', 8], c: [3, 6, 'O'] }) }
-    let(:move) { 5 }
+    let(:move) { 1 }
     let(:check) { [0, 1, 0, 0, 0, 0, 0, 0, 0, 1] }
     it 'checks winning postion for vertical' do
       expect(try.win).to eq(true)
@@ -47,7 +46,7 @@ describe '#WinLose' do
   end
 
   context '#win is working in vertical position' do
-    let(:game_board) { Daru::DataFrame.new({ a: ['O', 'O', 'O'], b: [2, 5, 8], c: [3, 6, 9] }) }
+    let(:game_board) { Daru::DataFrame.new({ a: %w[O O O], b: [2, 5, 8], c: [3, 6, 9] }) }
     let(:move) { 1 }
     let(:check) { [0, 1, 0, 0, 0, 0, 0, 0, 0, 1] }
     it 'checks winning postion for vertical' do
@@ -65,11 +64,56 @@ describe '#WinLose' do
   end
 
   context '#board_checks is checking the diagonal array' do
-    let(:game_board) { Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: ['O', 'O', 'O'] }) }
+    let(:game_board) { Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: %w[O O O] }) }
     let(:move) { 3 }
     let(:check) { [0, 0, 0, 0, 0, 0, 0, 0, 1, 1] }
     it 'returns diagonal array is true' do
       expect(try.board_checks.call).to be true
+    end
+  end
+
+  context '#Draw returns false since count not equal to 9' do
+    let(:game_board) { Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: %w[O O O] }) }
+    let(:move) { 3 }
+    let(:check) { [0, 0, 0, 0, 0, 0, 0, 0, 1, 1] }
+    it 'returns false for draw game' do
+      expect(try.draw(8)).to be false
+    end
+  end
+
+  context '#Draw returns true' do
+    let(:game_board) { Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: %w[O O O] }) }
+    let(:move) { 3 }
+    let(:check) { [0, 0, 0, 0, 0, 0, 0, 0, 1, 1] }
+    it 'returns true since count is equal to nine' do
+      expect(try.draw(9)).to be true
+    end
+  end
+end
+
+describe '.Game' do
+  let(:tour) { Game.new }
+  let(:player_name) { sign }
+  context 'return X as sign' do
+    let(:sign) { 0 }
+    it ' return sign of the player' do
+      expect(tour.sign(player_name)).to eq 'X'
+    end
+  end
+
+  context 'return 0 as sign' do
+    let(:sign) { 1 }
+    it ' return sign of the player' do
+      expect(tour.sign(player_name)).to eq 'O'
+    end
+  end
+
+  context '#change Change the position to the sign' do
+    let(:game_board) { Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: [3, 6, 9] }) }
+    let(:move) { 3 }
+    let(:player_name) { 1 }
+    it 'returns diagonal array is true' do
+      expect(tour.change(game_board, move, player_name)).to eq Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: ['O', 6, 9] })
     end
   end
 end

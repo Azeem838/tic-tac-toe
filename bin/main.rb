@@ -44,7 +44,7 @@ loop do
   end
 end
 new_game = Game.new
-game_on = new_game.start
+game_on = true
 
 count = 0
 player_num = choice - 1
@@ -85,9 +85,10 @@ while play
   puts 'Enter 0 to Quit'
   countinue = gets.chomp.to_i
   if countinue == 1
-    game_on = new_game.start
+    game_on = true
     game_board = Daru::DataFrame.new({ a: [1, 4, 7], b: [2, 5, 8], c: [3, 6, 9] })
     check = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    count = 0
   elsif countinue.zero?
     play = false
 
